@@ -1,7 +1,7 @@
 package org.example;
 
 public class CourierCredentials {
-    private static String login;
+    private String login;
     private String password;
 
     public CourierCredentials(Courier courierWithoutSomeData) {

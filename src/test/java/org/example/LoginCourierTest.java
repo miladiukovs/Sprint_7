@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -32,7 +33,8 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("check courier can login")
+    @DisplayName("login courier")
+    @Description("check courier can login")
     public void courierCanLogin() {
         ValidatableResponse loginResponse = courierClient.login(CourierCredentials.from(courier));
         int statusCode = loginResponse.extract().statusCode();
@@ -40,7 +42,8 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("check courier can not login without login")
+    @DisplayName("miss some data")
+    @Description("check courier can not login without login")
     public void cantLoginWithoutDataLogin() {
         Courier courierWithoutSomeData = getRandomWithoutLogin();
         ValidatableResponse loginResponse = courierClient.login(CourierCredentials.create(courierWithoutSomeData));
@@ -49,7 +52,8 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("check courier can not login with wrong login")
+    @DisplayName("wrong data")
+    @Description("check courier can not login with wrong login")
     public void cantLoginWithFalseLogin() {
         ValidatableResponse loginResponse = courierClient.login(CourierCredentials.create("IncorrLoGIn1229", "123456"));
         int statusCode = loginResponse.extract().statusCode();
@@ -57,7 +61,8 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("check return id")
+    @DisplayName("courier id")
+    @Description("check return id")
     public void courierReturnId() {
         ValidatableResponse loginResponse = courierClient.login(CourierCredentials.from(courier));
         int CourierId = loginResponse.extract().path("id");

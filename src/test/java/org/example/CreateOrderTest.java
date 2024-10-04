@@ -1,6 +1,7 @@
 package org.example;
 
 import io.restassured.response.ValidatableResponse;
+import io.qameta.allure.Description;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ public class CreateOrderTest {
     private final int expectedStatusCode;
     private final OrderClient orderClient = new OrderClient();
 
+    @Description("to get order")
     public CreateOrderTest(Order order, int expectedStatusCode) {
         this.order = order;
         this.expectedStatusCode = expectedStatusCode;
@@ -30,6 +32,7 @@ public class CreateOrderTest {
     }
 
     @Test
+    @Description("to create order")
     public void createOrder () {
         ValidatableResponse response = orderClient.createOrder(order);
 

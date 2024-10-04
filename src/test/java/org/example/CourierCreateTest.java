@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
@@ -25,12 +26,13 @@ public class CourierCreateTest {
     }
 
     @After
-    public void CleanUp() {
+    public void cleanUp() {
         courierClient.delete(courierId);
     }
 
     @Test
-    @DisplayName("check courier cam be created")
+    @DisplayName("create courier")
+    @Description("check courier can be created")
     public void courierCanBeCreated() {
 //create: status code, body. ok == true
         ValidatableResponse createResponse = courierClient.create(courier);
@@ -48,7 +50,8 @@ public class CourierCreateTest {
     }
 
     @Test
-    @DisplayName("check courier con not be the same")
+    @DisplayName("the same data courier")
+    @Description("check courier con not be the same")
     public void courierCantBeTheSame() {
         ValidatableResponse response = courierClient.create(courier);
         ValidatableResponse responseEqual = courierClient.create(courier);
@@ -64,7 +67,8 @@ public class CourierCreateTest {
     }
 
     @Test
-    @DisplayName("check courier can not created without login")
+    @DisplayName("miss some data")
+    @Description("check courier can not created without login")
     public void courierWithoutSomeData() {
         ValidatableResponse createResponse = courierClient.create(courierWithoutSomeData);
         ValidatableResponse loginResponse = courierClient.login(CourierCredentials.from(courierWithoutSomeData));

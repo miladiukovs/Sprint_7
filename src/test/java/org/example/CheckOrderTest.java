@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.Order;
@@ -15,7 +16,8 @@ public class CheckOrderTest {
     private OrderList orderList = new OrderList();
 
     @Test
-    @DisplayName("Return list of orders")
+    @DisplayName("show orders list")
+    @Description("Return list of orders")
     public void returnOrderList() {
         ValidatableResponse response = orderClient.getOrderList(orderList);
         ArrayList<Order> list = response.extract().path("orders");
